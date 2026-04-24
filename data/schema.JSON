@@ -1,0 +1,109 @@
+{
+  "tables": [
+    {
+      "table_name": "employees",
+      "columns": [
+        { "name": "emp_id", "type": "INT", "description": "Unique employee ID" },
+        { "name": "first_name", "type": "VARCHAR", "description": "Employee first name" },
+        { "name": "last_name", "type": "VARCHAR", "description": "Employee last name" },
+        { "name": "email", "type": "VARCHAR", "description": "Employee email address" },
+        { "name": "phone", "type": "VARCHAR", "description": "Employee phone number" },
+        { "name": "hire_date", "type": "DATE", "description": "Date of joining" },
+        { "name": "job_id", "type": "INT", "description": "Job role ID" },
+        { "name": "salary", "type": "DECIMAL", "description": "Employee salary" },
+        { "name": "manager_id", "type": "INT", "description": "Manager's employee ID" },
+        { "name": "department_id", "type": "INT", "description": "Department ID" }
+      ]
+    },
+    {
+      "table_name": "departments",
+      "columns": [
+        { "name": "department_id", "type": "INT", "description": "Unique department ID" },
+        { "name": "department_name", "type": "VARCHAR", "description": "Name of the department" },
+        { "name": "location_id", "type": "INT", "description": "Location ID of the department" }
+      ]
+    },
+    {
+      "table_name": "jobs",
+      "columns": [
+        { "name": "job_id", "type": "INT", "description": "Unique job ID" },
+        { "name": "job_title", "type": "VARCHAR", "description": "Title of the job role" },
+        { "name": "min_salary", "type": "DECIMAL", "description": "Minimum salary for the job" },
+        { "name": "max_salary", "type": "DECIMAL", "description": "Maximum salary for the job" }
+      ]
+    },
+    {
+      "table_name": "locations",
+      "columns": [
+        { "name": "location_id", "type": "INT", "description": "Unique location ID" },
+        { "name": "city", "type": "VARCHAR", "description": "City name" },
+        { "name": "state", "type": "VARCHAR", "description": "State name" },
+        { "name": "country", "type": "VARCHAR", "description": "Country name" }
+      ]
+    },
+    {
+      "table_name": "attendance",
+      "columns": [
+        { "name": "emp_id", "type": "INT", "description": "Employee ID" },
+        { "name": "date", "type": "DATE", "description": "Attendance date" },
+        { "name": "status", "type": "VARCHAR", "description": "Attendance status (Present, Absent, Leave)" }
+      ]
+    },
+    {
+      "table_name": "performance",
+      "columns": [
+        { "name": "emp_id", "type": "INT", "description": "Employee ID" },
+        { "name": "review_date", "type": "DATE", "description": "Performance review date" },
+        { "name": "rating", "type": "INT", "description": "Performance rating (1-5)" }
+      ]
+    },
+    {
+      "table_name": "leaves",
+      "columns": [
+        { "name": "emp_id", "type": "INT", "description": "Employee ID" },
+        { "name": "leave_type", "type": "VARCHAR", "description": "Type of leave (Sick, Casual, etc.)" },
+        { "name": "start_date", "type": "DATE", "description": "Leave start date" },
+        { "name": "end_date", "type": "DATE", "description": "Leave end date" }
+      ]
+    }
+  ],
+
+  "relationships": [
+    {
+      "from_table": "employees",
+      "from_column": "department_id",
+      "to_table": "departments",
+      "to_column": "department_id"
+    },
+    {
+      "from_table": "employees",
+      "from_column": "job_id",
+      "to_table": "jobs",
+      "to_column": "job_id"
+    },
+    {
+      "from_table": "departments",
+      "from_column": "location_id",
+      "to_table": "locations",
+      "to_column": "location_id"
+    },
+    {
+      "from_table": "attendance",
+      "from_column": "emp_id",
+      "to_table": "employees",
+      "to_column": "emp_id"
+    },
+    {
+      "from_table": "performance",
+      "from_column": "emp_id",
+      "to_table": "employees",
+      "to_column": "emp_id"
+    },
+    {
+      "from_table": "leaves",
+      "from_column": "emp_id",
+      "to_table": "employees",
+      "to_column": "emp_id"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+[
+  { "id": 1, "intent": "get all employees", "query": "SELECT * FROM employees;" },
+  { "id": 2, "intent": "get employee names", "query": "SELECT first_name, last_name FROM employees;" },
+  { "id": 3, "intent": "employees in department", "query": "SELECT * FROM employees WHERE department_id = {department_id};" },
+  { "id": 4, "intent": "employees with high salary", "query": "SELECT * FROM employees WHERE salary > {amount};" },
+  { "id": 5, "intent": "employees sorted by salary desc", "query": "SELECT * FROM employees ORDER BY salary DESC;" },
+  { "id": 6, "intent": "employees sorted by hire date", "query": "SELECT * FROM employees ORDER BY hire_date ASC;" },
+  { "id": 7, "intent": "count employees", "query": "SELECT COUNT(*) FROM employees;" },
+  { "id": 8, "intent": "unique departments", "query": "SELECT DISTINCT department_id FROM employees;" },
+  { "id": 9, "intent": "employees by job id", "query": "SELECT * FROM employees WHERE job_id = '{job_id}';" },
+  { "id": 10, "intent": "employees hired after date", "query": "SELECT * FROM employees WHERE hire_date > '{date}';" },
+
+  { "id": 11, "intent": "salary between range", "query": "SELECT * FROM employees WHERE salary BETWEEN {min} AND {max};" },
+  { "id": 12, "intent": "employees name starts with", "query": "SELECT * FROM employees WHERE first_name LIKE '{prefix}%';" },
+  { "id": 13, "intent": "employees without manager", "query": "SELECT * FROM employees WHERE manager_id IS NULL;" },
+  { "id": 14, "intent": "employees in multiple departments", "query": "SELECT * FROM employees WHERE department_id IN ({departments});" },
+  { "id": 15, "intent": "limit employees", "query": "SELECT * FROM employees LIMIT {limit};" },
+
+  { "id": 16, "intent": "employees with department name", "query": "SELECT e.*, d.department_name FROM employees e JOIN departments d ON e.department_id = d.department_id;" },
+  { "id": 17, "intent": "employees with job title", "query": "SELECT e.first_name, j.job_title FROM employees e JOIN jobs j ON e.job_id = j.job_id;" },
+  { "id": 18, "intent": "employees with department and city", "query": "SELECT e.first_name, d.department_name, l.city FROM employees e JOIN departments d ON e.department_id = d.department_id JOIN locations l ON d.location_id = l.location_id;" },
+  { "id": 19, "intent": "employees with managers", "query": "SELECT e.first_name, m.first_name AS manager_name FROM employees e LEFT JOIN employees m ON e.manager_id = m.emp_id;" },
+  { "id": 20, "intent": "employee count per department", "query": "SELECT d.department_name, COUNT(e.emp_id) FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;" },
+
+  { "id": 21, "intent": "average salary per job", "query": "SELECT j.job_title, AVG(e.salary) FROM employees e JOIN jobs j ON e.job_id = j.job_id GROUP BY j.job_title;" },
+  { "id": 22, "intent": "employee count per city", "query": "SELECT l.city, COUNT(e.emp_id) FROM employees e JOIN departments d ON e.department_id = d.department_id JOIN locations l ON d.location_id = l.location_id GROUP BY l.city;" },
+  { "id": 23, "intent": "employees in HR", "query": "SELECT e.first_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'HR';" },
+  { "id": 24, "intent": "high salary employees with job", "query": "SELECT e.first_name, j.job_title FROM employees e JOIN jobs j ON e.job_id = j.job_id WHERE e.salary > {amount};" },
+  { "id": 25, "intent": "employees with managers inner join", "query": "SELECT e.first_name, m.first_name FROM employees e JOIN employees m ON e.manager_id = m.emp_id;" },
+
+  { "id": 26, "intent": "total salary per department", "query": "SELECT d.department_name, SUM(e.salary) FROM employees e JOIN departments d ON e.department_id = d.department_id GROUP BY d.department_name;" },
+  { "id": 27, "intent": "employees with city", "query": "SELECT e.first_name, l.city FROM employees e JOIN departments d ON e.department_id = d.department_id JOIN locations l ON d.location_id = l.location_id;" },
+  { "id": 28, "intent": "attendance count per employee", "query": "SELECT e.first_name, COUNT(a.date) FROM employees e JOIN attendance a ON e.emp_id = a.emp_id GROUP BY e.emp_id;" },
+  { "id": 29, "intent": "average performance per employee", "query": "SELECT e.first_name, AVG(p.rating) FROM employees e JOIN performance p ON e.emp_id = p.emp_id GROUP BY e.emp_id;" },
+  { "id": 30, "intent": "leave count per employee", "query": "SELECT e.first_name, COUNT(lv.leave_type) FROM employees e JOIN leaves lv ON e.emp_id = lv.emp_id GROUP BY e.emp_id;" },
+
+  { "id": 31, "intent": "average salary", "query": "SELECT AVG(salary) FROM employees;" },
+  { "id": 32, "intent": "max salary", "query": "SELECT MAX(salary) FROM employees;" },
+  { "id": 33, "intent": "min salary", "query": "SELECT MIN(salary) FROM employees;" },
+  { "id": 34, "intent": "employee count by department", "query": "SELECT department_id, COUNT(*) FROM employees GROUP BY department_id;" },
+  { "id": 35, "intent": "avg salary by department", "query": "SELECT department_id, AVG(salary) FROM employees GROUP BY department_id;" },
+
+  { "id": 36, "intent": "max salary per job", "query": "SELECT job_id, MAX(salary) FROM employees GROUP BY job_id;" },
+  { "id": 37, "intent": "sum salary per department", "query": "SELECT department_id, SUM(salary) FROM employees GROUP BY department_id;" },
+  { "id": 38, "intent": "count high salary employees", "query": "SELECT COUNT(*) FROM employees WHERE salary > {amount};" },
+  { "id": 39, "intent": "departments with many employees", "query": "SELECT department_id, COUNT(*) FROM employees GROUP BY department_id HAVING COUNT(*) > {count};" },
+  { "id": 40, "intent": "jobs with high avg salary", "query": "SELECT job_id, AVG(salary) FROM employees GROUP BY job_id HAVING AVG(salary) > {amount};" },
+
+  { "id": 41, "intent": "distinct job count", "query": "SELECT COUNT(DISTINCT job_id) FROM employees;" },
+  { "id": 42, "intent": "min salary per department", "query": "SELECT department_id, MIN(salary) FROM employees GROUP BY department_id;" },
+  { "id": 43, "intent": "max salary per department", "query": "SELECT department_id, MAX(salary) FROM employees GROUP BY department_id;" },
+  { "id": 44, "intent": "employee count per job", "query": "SELECT job_id, COUNT(*) FROM employees GROUP BY job_id;" },
+  { "id": 45, "intent": "total salary", "query": "SELECT SUM(salary) FROM employees;" },
+
+  { "id": 46, "intent": "salary above average", "query": "SELECT * FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);" },
+  { "id": 47, "intent": "employees in IT", "query": "SELECT * FROM employees WHERE department_id = (SELECT department_id FROM departments WHERE department_name = 'IT');" },
+  { "id": 48, "intent": "highest salary employee", "query": "SELECT * FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);" },
+  { "id": 49, "intent": "high performance employees", "query": "SELECT * FROM employees WHERE emp_id IN (SELECT emp_id FROM performance WHERE rating > {rating});" },
+  { "id": 50, "intent": "employees without leave", "query": "SELECT * FROM employees WHERE emp_id NOT IN (SELECT emp_id FROM leaves);" },
+
+  { "id": 51, "intent": "salary above department average", "query": "SELECT * FROM employees WHERE salary > (SELECT AVG(salary) FROM employees WHERE department_id = {department_id});" },
+  { "id": 52, "intent": "absent employees", "query": "SELECT * FROM employees WHERE emp_id IN (SELECT emp_id FROM attendance WHERE status = 'Absent');" },
+  { "id": 53, "intent": "high paying jobs employees", "query": "SELECT * FROM employees WHERE job_id IN (SELECT job_id FROM jobs WHERE max_salary > {amount});" },
+  { "id": 54, "intent": "top rated employees", "query": "SELECT * FROM employees WHERE emp_id IN (SELECT emp_id FROM performance WHERE rating = 5);" },
+  { "id": 55, "intent": "employees not in location", "query": "SELECT * FROM employees WHERE department_id NOT IN (SELECT department_id FROM departments WHERE location_id = {location_id});" },
+
+  { "id": 56, "intent": "top paid employees", "query": "SELECT first_name, salary FROM employees ORDER BY salary DESC LIMIT {limit};" },
+  { "id": 57, "intent": "departments by avg salary", "query": "SELECT department_id, AVG(salary) FROM employees GROUP BY department_id ORDER BY AVG(salary) DESC;" },
+  { "id": 58, "intent": "employees with most absences", "query": "SELECT e.first_name, COUNT(a.date) FROM employees e JOIN attendance a ON e.emp_id = a.emp_id WHERE a.status = 'Absent' GROUP BY e.emp_id;" },
+  { "id": 59, "intent": "low performing employees", "query": "SELECT e.first_name, p.rating FROM employees e JOIN performance p ON e.emp_id = p.emp_id WHERE p.rating < {rating};" },
+  { "id": 60, "intent": "total leave days per employee", "query": "SELECT e.first_name, SUM(DATEDIFF(lv.end_date, lv.start_date)) FROM employees e JOIN leaves lv ON e.emp_id = lv.emp_id GROUP BY e.emp_id;" }
+]
