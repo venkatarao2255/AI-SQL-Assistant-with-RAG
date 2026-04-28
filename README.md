@@ -10,7 +10,15 @@ An intelligent SQL query assistant that converts natural language queries into M
 - **Safety Checks**: Built-in safeguards to prevent dangerous operations (DROP, DELETE, etc.)
 - **Modern UI**: Clean React interface for easy interaction
 - **Real-time Results**: Instant query results display
+## 📸 Project Preview
 
+![AI MySQL Assistant Preview](https://res.cloudinary.com/domfamgtf/image/upload/v1777338314/Screenshot_2026-04-28_063357_sp4k4k.png)
+
+
+![AI MySQL Assistant Preview](https://res.cloudinary.com/domfamgtf/image/upload/v1777338324/Screenshot_2026-04-28_063417_lkdtwb.png)
+
+
+---
 ## Tech Stack
 
 ### Backend
